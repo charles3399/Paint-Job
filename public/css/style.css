@@ -64,6 +64,9 @@ h1{
     display: flex;
     justify-content: center;
 }
+img{
+    margin: 25px;
+}
 #btn{
     background-color: rgb(170, 68, 68);
     color: white;

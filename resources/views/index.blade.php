@@ -34,7 +34,7 @@
             <div class="imgItems">
                 <img src="{{asset('img/default-car.png')}}">
                 <img src="{{asset('img/arrow.png')}}">
-                <img src="{{asset('img/red-car.png')}}" id="target">
+                <img src="{{asset('img/default-car.png')}}" id="target" name="imgswap">
             </div>
 
             <p>Car Details</p>
@@ -51,10 +51,10 @@
                     <br>
                     <label>Target Color</label>
                     <select name="target_color" id="targ_color">
-                        <option value="" selected>Choose target color</option>
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
-                        <option value="blue">Blue</option>
+                        <option value="img/default-car.png">Select target color</option>
+                        <option value="img/red-car.png">Red</option>
+                        <option value="img/blue-car.png">Blue</option>
+                        <option value="img/green-car.png">Green</option>
                     </select>
                     <br>
                     <button type="submit" id="btn">Submit</button>
@@ -64,8 +64,9 @@
 
     <script>
         $(document).ready(function(){
-            $('#targ_color').change(function(e){
-                $("#target").attr("src", "img/green-car.png")
+            
+            $('#targ_color').change(function(){
+                $('#target[name=imgswap]').attr('src',$(this).val())
             })
         })
     </script>

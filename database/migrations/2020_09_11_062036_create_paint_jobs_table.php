@@ -15,6 +15,9 @@ class CreatePaintJobsTable extends Migration
     {
         Schema::create('paint_jobs', function (Blueprint $table) {
             $table->id();
+            $table->string('plate_no');
+            $table->string('current_color');
+            $table->string('target_color');
             $table->timestamps();
         });
     }

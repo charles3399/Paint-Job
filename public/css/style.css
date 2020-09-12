@@ -63,12 +63,6 @@ h1{
 img{
     margin: 25px;
 }
-#btn{
-    background-color: rgb(170, 68, 68);
-    color: white;
-    margin: 2px;
-    padding: 2px;
-}
 .imgItems{
     display: flex;
     align-items: center;

@@ -24,15 +24,15 @@
         </section>
 
         <section class="mid-section">
-            <a href="" class="selected">New Paint Job</a>
-            <a href="{{URL::to('paint-job')}}">Paint Jobs</a>
+            <a href="{{route('paintjob.index')}}" class="selected">New Paint Job</a>
+            <a href="{{route('paintjob.list')}}">Paint Jobs</a>
         </section>
 
         <section class="lower-section">
             <h3 id="center">New Paint Job</h3>
 
             <div class="imgItems">
-                <img src="{{asset('img/default-car.png')}}">
+                <img src="{{asset('img/default-car.png')}}" id="current" name="recent_color">
                 <img src="{{asset('img/arrow.png')}}">
                 <img src="{{asset('img/default-car.png')}}" id="target" name="imgswap">
             </div>
@@ -44,14 +44,15 @@
                     <br>
                     <label>Current Color</label>
                     <select name="current_color" id="curr_color">
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
-                        <option value="blue">Blue</option>
+                        <option value="img/default-car.png" selected></option>
+                        @foreach ($colors as $color)
+                            <option value="{{$color->id}}">{{$color->color}}</option>
+                        @endforeach
                     </select>
                     <br>
                     <label>Target Color</label>
                     <select name="target_color" id="targ_color">
-                        <option value="img/default-car.png">Select target color</option>
+                        <option value="img/default-car.png"></option>
                         <option value="img/red-car.png">Red</option>
                         <option value="img/blue-car.png">Blue</option>
                         <option value="img/green-car.png">Green</option>
@@ -62,11 +63,17 @@
         </section>
     </div>
 
+    {{-- <option value="img/default-car.png"></option> --}}
+
     <script>
         $(document).ready(function(){
             
             $('#targ_color').change(function(){
                 $('#target[name=imgswap]').attr('src',$(this).val())
+            })
+
+            $('#curr_color').change(function(){
+                $('#current[name=recent_color]').attr('src',$(this).val())
             })
         })
     </script>

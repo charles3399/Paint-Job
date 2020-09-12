@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaintJobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('paints', 'PaintController');
+Route::resource('paintjob', PaintJobController::class);
 
-Route::get('paint-job', function () {
-    return view('paint-job')->name('paint-job');
-});
-
+Route::get('job/list', [PaintJobController::class, 'viewPaintJob'])->name('paintjob.list');

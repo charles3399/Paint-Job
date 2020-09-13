@@ -83,7 +83,7 @@ input, select{
     border-radius: 4px;
     box-sizing: border-box;
 }
-#btn{
+.btn{
     background-color:rgb(170, 68, 68);
     border: none;
     color: white;

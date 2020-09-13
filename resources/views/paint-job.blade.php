@@ -5,7 +5,7 @@
         <a href="{{route('paintjob.index')}}">New Paint Job</a>
         <a href="{{route('paintjob.list')}}" class="selected">Paint Jobs</a>
     </section>
-
+    
     <section class="lower-section">
         <table style="width: 100%">
             <thead>
@@ -24,7 +24,7 @@
                         <td><span class="replaceme">{{$paintjob->target_color}}</span></td>
                         <td>
                             <form action="#">
-                                <button type="submit">Mark as done</button>
+                                <button type="submit" class="btn">Mark as done</button>
                             </form>
                         </td>
                     </tr>
@@ -32,6 +32,7 @@
             </tbody>
         </table>
     </section>
+
 @endsection
 
 @section('script')

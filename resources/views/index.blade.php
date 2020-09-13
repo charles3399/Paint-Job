@@ -39,7 +39,7 @@
                     @endforeach
                 </select>
                 <br>
-                <button type="submit" id='btn'>Submit</button>
+                <button type="submit" class='btn'>Submit</button>
         </form>
     </section>
 

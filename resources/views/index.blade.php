@@ -17,6 +17,7 @@
         </div>
 
         <p>Car Details</p>
+        @include('layouts.error')
         <form action="{{route('paintjob.store')}}" method="POST">
             @csrf
                 <label>Plate No.</label>

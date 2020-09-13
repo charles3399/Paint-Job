@@ -14,9 +14,11 @@ use App\Http\Controllers\PaintJobController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/', [PaintJobController::class, 'index']);
 
 Route::resource('paintjob', PaintJobController::class);
 

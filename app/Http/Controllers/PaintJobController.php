@@ -41,7 +41,9 @@ class PaintJobController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'plate_no' => 'required|max:100|alpha_num',
+            'plate_no' => 'required|max:100',
+            'current_color' => 'required',
+            'target_color' => 'required',
         ]);
 
         $paintjob = new PaintJob;

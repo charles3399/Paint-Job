@@ -25,7 +25,7 @@
                 <br>
                 <label>Current Color</label>
                 <select name="current_color" id="curr_color">
-                    <option value="img/default-car.png"></option>
+                    <option></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach
@@ -33,7 +33,7 @@
                 <br>
                 <label>Target Color</label>
                 <select name="target_color" id="targ_color">
-                    <option value="img/default-car.png"></option>
+                    <option></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach

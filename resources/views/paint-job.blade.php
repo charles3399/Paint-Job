@@ -1,60 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Paint Jobs</title>
+@extends('layouts.app')
 
-    {{-- Main Font --}}
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+@section('content')
+    <section class="mid-section">
+        <a href="{{route('paintjob.index')}}">New Paint Job</a>
+        <a href="{{route('paintjob.list')}}" class="selected">Paint Jobs</a>
+    </section>
 
-    {{-- CSS --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-
-    {{-- JQuery --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-
-</head>
-<body>
-    <div class="grid-container">
-        <section class="upper-section">
-            <h1>Juan's Auto Paint</h1>
-        </section>
-
-        <section class="mid-section">
-            <a href="{{route('paintjob.index')}}">New Paint Job</a>
-            <a href="{{route('paintjob.list')}}" class="selected">Paint Jobs</a>
-        </section>
-
-        <section class="lower-section">
-            <table style="width: 100%">
-                <thead>
+    <section class="lower-section">
+        <table style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Plate No</th>
+                    <th>Current Color</th>
+                    <th>Target Color</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($paintjobs as $paintjob)
                     <tr>
-                        <th>Plate No</th>
-                        <th>Current Color</th>
-                        <th>Target Color</th>
-                        <th>Action</th>
+                        <td>{{$paintjob->plate_no}}</td>
+                        <td><span class="replaceme">{{$paintjob->current_color}}</span></td>
+                        <td><span class="replaceme">{{$paintjob->target_color}}</span></td>
+                        <td>
+                            <form action="#">
+                                <button type="submit">Mark as done</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">Dummy text</td>
-                        <td>Dummy text</td>
-                        <td>Dummy text</td>
-                        <td>Dummy text</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
-    
-</body>
-</html>
+                @endforeach
+            </tbody>
+        </table>
+    </section>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $( ".replaceme" ).each(function() {
+                if($(this).html() == 1){
+                    $(this).html('Red')
+                }
+
+                if($(this).html() == 2){
+                    $(this).html('Green')
+                }
+
+                if($(this).html() == 3){
+                    $(this).html('Blue')
+                }
+            })
+ 
+        })
+    </script>
+@endsection

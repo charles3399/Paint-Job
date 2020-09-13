@@ -40,7 +40,19 @@ class PaintJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'plate_no' => 'required|max:100|alpha_num',
+        ]);
+
+        $paintjob = new PaintJob;
+
+        $paintjob->plate_no = $request->plate_no;
+        $paintjob->current_color = $request->current_color;
+        $paintjob->target_color = $request->target_color;
+
+        $paintjob->save();
+
+        return redirect('job/list');
     }
 
     /**
@@ -90,6 +102,22 @@ class PaintJobController extends Controller
 
     public function viewPaintJob()
     {
-        return view('paint-job');
+        $paintjobs = DB::table('paint_jobs')
+        ->select('paint_jobs.*','colors.color')
+        ->join('colors','colors.id','paint_jobs.current_color')
+        //->join('colors','colors.id','paint_jobs.target_color')
+        //->where('paint_jobs.current_color','colors.id')
+        // ->where('paint_jobs.target_color','colors.id')
+        ->get();
+
+        return view('paint-job')
+        ->with('paintjobs', $paintjobs);
+    }
+
+    public function getCurrentColor($id)
+    {
+        $current_color = DB::table('colors')->where('id', $id)->get();
+
+        return json_encode($current_color);
     }
 }

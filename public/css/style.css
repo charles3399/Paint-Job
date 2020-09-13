@@ -8,6 +8,10 @@ html, body{
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -29,6 +33,9 @@ h1{
 .upper-section{
     grid-area: upper-section;
     background-color:  #a0a0a0;
+}
+.upper-section a{
+    color: black;
 }
 /* Middle Section */
 .mid-section{
@@ -75,4 +82,20 @@ input, select{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+#btn{
+    background-color:rgb(170, 68, 68);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }

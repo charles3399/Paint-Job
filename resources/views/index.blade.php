@@ -25,7 +25,7 @@
                 <br>
                 <label>Current Color</label>
                 <select name="current_color" id="curr_color">
-                    <option></option>
+                    <option value="default"></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach
@@ -33,7 +33,7 @@
                 <br>
                 <label>Target Color</label>
                 <select name="target_color" id="targ_color">
-                    <option></option>
+                    <option value="default"></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach
@@ -64,6 +64,10 @@
                 {
                     $('#target').attr('src','img/blue-car.png')
                 }
+                if($(this).val() == 'default')
+                {
+                    $('#target').attr('src','img/default-car.png')
+                }
                 
             })
 
@@ -79,6 +83,10 @@
                 if($(this).val() == 3)
                 {
                     $('#current').attr('src','img/blue-car.png')
+                }
+                if($(this).val() == 'default')
+                {
+                    $('#current').attr('src','img/default-car.png')
                 }
             })
         })

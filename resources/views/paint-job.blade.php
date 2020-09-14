@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+     <style> {{-- Somehow the CSS won't work sometimes --}}
+        .disabled{
+        background-color:rgb(170, 68, 68);
+        border: none;
+        opacity: 0.6;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: not-allowed;
+    }
+    </style>
+
     <section class="mid-section">
         <a href="{{route('paintjob.index')}}">New Paint Job</a>
         <a href="{{route('paintjob.list')}}" class="selected">Paint Jobs</a>
@@ -24,14 +40,18 @@
                         <td style='text-align: center;'><span class="replaceme">{{$paintjob->current_color}}</span></td>
                         <td style='text-align: center;'><span class="replaceme">{{$paintjob->target_color}}</span></td>
                         <td style='text-align: center;'>
-                            <form action="#">
-                                <button type="submit" class="btn">Mark as done</button>
-                            </form>
+                            @if ($paintjob->is_done == true)
+                                <button class="disabled">Paint Completed</button>
+                            @else
+                            <a href="{{ route('paint.done', $paintjob->id) }}" style="color: white"><button class="btn">Mark as done</button></a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
+        <span style="text-align: right;">{{$paintjobs->links()}}</span>
 
         <h3>Shop Performance Breakdown:</h3>
         <table style="width: 100%;">

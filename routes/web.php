@@ -23,3 +23,5 @@ Route::get('/', [PaintJobController::class, 'index']);
 Route::resource('paintjob', PaintJobController::class);
 
 Route::get('job/list', [PaintJobController::class, 'viewPaintJob'])->name('paintjob.list');
+
+Route::get('paint-done/{id}', [PaintJobController::class, 'paintDone'])->name('paint.done');

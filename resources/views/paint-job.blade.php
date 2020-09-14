@@ -96,7 +96,13 @@
                     $(this).html('Blue')
                 }
             })
- 
+
+            $("tr > td").each(function(){
+                if($('.disabled').html() == 'Paint Completed')
+                {
+                    $(this).remove()
+                }
+            })
         })
     </script>
 @endsection

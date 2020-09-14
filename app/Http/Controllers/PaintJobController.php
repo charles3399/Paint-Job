@@ -101,9 +101,13 @@ class PaintJobController extends Controller
      * @param  \App\Models\PaintJob  $paintJob
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaintJob $paintJob)
+    public function destroy(PaintJob $paintjob)
     {
-        //
+        $paintjob->delete();
+
+        $paintjob->update(['is_done' => true]);
+
+        return redirect('job/list');
     }
 
     public function viewPaintJob()
@@ -114,7 +118,7 @@ class PaintJobController extends Controller
         //->join('colors','colors.id','paint_jobs.target_color')
         //->where('paint_jobs.current_color','colors.id')
         // ->where('paint_jobs.target_color','colors.id')
-        ->orderBy('created_at', 'DESC')
+        ->where('paint_jobs.is_done', 0)
         ->simplePaginate(5);
 
         $countBlue = DB::table('paint_jobs')->where([['target_color', 4],['is_done', true]])->count();
@@ -129,12 +133,5 @@ class PaintJobController extends Controller
         ->with('countRed', $countRed)
         ->with('countGreen', $countGreen)
         ->with('totalPainted', $totalPainted);
-    }
-
-    public function paintDone($id)
-    {
-        $isDone = DB::table('paint_jobs')->where('id', $id)->update(['is_done' => true]);
-
-        return redirect('job/list');
     }
 }

@@ -34,20 +34,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($paintjobs as $paintjob)
-                    <tr>
-                        <td style='text-align: center;'>{{$paintjob->plate_no}}</td>
-                        <td style='text-align: center;'><span class="replaceme">{{$paintjob->current_color}}</span></td>
-                        <td style='text-align: center;'><span class="replaceme">{{$paintjob->target_color}}</span></td>
-                        <td style='text-align: center;'>
-                            @if ($paintjob->is_done == true)
-                                <button class="disabled">Paint Completed</button>
-                            @else
-                            <a href="{{ route('paint.done', $paintjob->id) }}" style="color: white"><button class="btn">Mark as done</button></a>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
+                @if ($paintjobs->count() > 0)
+                    @foreach ($paintjobs as $paintjob)
+                        <tr>
+                            <td style='text-align: center;'>{{$paintjob->plate_no}}</td>
+                            <td style='text-align: center;'><span class="replaceme">{{$paintjob->current_color}}</span></td>
+                            <td style='text-align: center;'><span class="replaceme">{{$paintjob->target_color}}</span></td>
+                            <td style='text-align: center;'>
+                                <form action="{{ route('paintjob.destroy', $paintjob->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn">Mark as Done</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <p style='text-align: center;'>Empty...Paint your car now!</p> 
+                @endif
+                
             </tbody>
         </table>
 
@@ -94,13 +99,6 @@
 
                 if($(this).html() == 4){
                     $(this).html('Blue')
-                }
-            })
-
-            $("tr > td").each(function(){
-                if($('.disabled').html() == 'Paint Completed')
-                {
-                    $(this).remove()
                 }
             })
         })

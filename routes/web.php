@@ -23,6 +23,3 @@ Route::get('/', [PaintJobController::class, 'index']);
 Route::resource('paintjob', PaintJobController::class);
 
 Route::get('job/list', [PaintJobController::class, 'viewPaintJob'])->name('paintjob.list');
-
-//Dynamic change of colors using AJAX
-Route::get('get/current-color/{id}', [PaintJobController::class], 'getCurrentColor');

@@ -115,11 +115,4 @@ class PaintJobController extends Controller
         return view('paint-job')
         ->with('paintjobs', $paintjobs);
     }
-
-    public function getCurrentColor($id)
-    {
-        $current_color = DB::table('colors')->where('id', $id)->get();
-
-        return json_encode($current_color);
-    }
 }

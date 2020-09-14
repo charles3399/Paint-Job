@@ -110,9 +110,20 @@ class PaintJobController extends Controller
         //->join('colors','colors.id','paint_jobs.target_color')
         //->where('paint_jobs.current_color','colors.id')
         // ->where('paint_jobs.target_color','colors.id')
+        ->orderBy('created_at', 'DESC')
         ->get();
 
+        $countBlue = DB::table('paint_jobs')->where('target_color', 4)->count();
+        $countRed = DB::table('paint_jobs')->where('target_color', 2)->count();
+        $countGreen = DB::table('paint_jobs')->where('target_color', 3)->count();
+
+        $totalPainted = $countBlue + $countRed + $countGreen;
+
         return view('paint-job')
-        ->with('paintjobs', $paintjobs);
+        ->with('paintjobs', $paintjobs)
+        ->with('countBlue', $countBlue)
+        ->with('countRed', $countRed)
+        ->with('countGreen', $countGreen)
+        ->with('totalPainted', $totalPainted);
     }
 }

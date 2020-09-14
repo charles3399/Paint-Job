@@ -25,7 +25,6 @@
                 <br>
                 <label>Current Color</label>
                 <select name="current_color" id="curr_color">
-                    <option value="default"></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach
@@ -33,7 +32,6 @@
                 <br>
                 <label>Target Color</label>
                 <select name="target_color" id="targ_color">
-                    <option value="default"></option>
                     @foreach ($colors as $color)
                         <option value="{{$color->id}}">{{$color->color}}</option>
                     @endforeach
@@ -54,19 +52,19 @@
 
                 if($(this).val() == 1)
                 {
-                    $('#target').attr('src','img/red-car.png')
+                    $('#target').attr('src','img/default-car.png')
                 }
                 if($(this).val() == 2)
                 {
-                    $('#target').attr('src','img/green-car.png')
+                    $('#target').attr('src','img/red-car.png')
                 }
                 if($(this).val() == 3)
                 {
-                    $('#target').attr('src','img/blue-car.png')
+                    $('#target').attr('src','img/green-car.png')
                 }
-                if($(this).val() == 'default')
+                if($(this).val() == 4)
                 {
-                    $('#target').attr('src','img/default-car.png')
+                    $('#target').attr('src','img/blue-car.png')
                 }
                 
             })
@@ -74,19 +72,19 @@
             $('#curr_color').change(function(){
                 if($(this).val() == 1)
                 {
-                    $('#current').attr('src','img/red-car.png')
+                    $('#current').attr('src','img/default-car.png')
                 }
                 if($(this).val() == 2)
                 {
-                    $('#current').attr('src','img/green-car.png')
+                    $('#current').attr('src','img/red-car.png')
                 }
                 if($(this).val() == 3)
                 {
-                    $('#current').attr('src','img/blue-car.png')
+                    $('#current').attr('src','img/green-car.png')
                 }
-                if($(this).val() == 'default')
+                if($(this).val() == 4)
                 {
-                    $('#current').attr('src','img/default-car.png')
+                    $('#current').attr('src','img/blue-car.png')
                 }
             })
         })

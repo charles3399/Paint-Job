@@ -7,6 +7,7 @@
     </section>
     
     <section class="lower-section">
+        <h3>Paint Jobs in Progresss</h3>
         <table style="width: 100%">
             <thead>
                 <tr>
@@ -19,16 +20,36 @@
             <tbody>
                 @foreach ($paintjobs as $paintjob)
                     <tr>
-                        <td>{{$paintjob->plate_no}}</td>
-                        <td><span class="replaceme">{{$paintjob->current_color}}</span></td>
-                        <td><span class="replaceme">{{$paintjob->target_color}}</span></td>
-                        <td>
+                        <td style='text-align: center;'>{{$paintjob->plate_no}}</td>
+                        <td style='text-align: center;'><span class="replaceme">{{$paintjob->current_color}}</span></td>
+                        <td style='text-align: center;'><span class="replaceme">{{$paintjob->target_color}}</span></td>
+                        <td style='text-align: center;'>
                             <form action="#">
                                 <button type="submit" class="btn">Mark as done</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
+            </tbody>
+        </table>
+
+        <h3>Shop Performance Breakdown:</h3>
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Blue</th>
+                    <th>Red</th>
+                    <th>Green</th>
+                    <th>Total Cars Painted</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='text-align: center;'>{{$countBlue}}</td>
+                    <td style='text-align: center;'>{{$countRed}}</td>
+                    <td style='text-align: center;'>{{$countGreen}}</td>
+                    <td style='text-align: center;'>{{$totalPainted}}</td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -40,14 +61,18 @@
         $(document).ready(function(){
             $( ".replaceme" ).each(function() {
                 if($(this).html() == 1){
-                    $(this).html('Red')
+                    $(this).html('Default')
                 }
 
                 if($(this).html() == 2){
-                    $(this).html('Green')
+                    $(this).html('Red')
                 }
 
                 if($(this).html() == 3){
+                    $(this).html('Green')
+                }
+
+                if($(this).html() == 4){
                     $(this).html('Blue')
                 }
             })

@@ -8,7 +8,7 @@
     
     <section class="lower-section">
         <h3>Paint Jobs in Progresss</h3>
-        <table style="width: 100%">
+        <table style="width: 100%" id="progressTable">
             <thead>
                 <tr>
                     <th>Plate No</th>
@@ -25,11 +25,13 @@
                             <td style='text-align: center;'><span class="replaceme">{{$paintjob->current_color}}</span></td>
                             <td style='text-align: center;'><span class="replaceme">{{$paintjob->target_color}}</span></td>
                             <td style='text-align: center;'>
-                                <form action="{{ route('paintjob.destroy', $paintjob->id) }}" method="post">
+                                
+                                <button type="submit" class="btn deleteRecord" data-id="{{$paintjob->id}}">Mark as Done</button>
+                            
+                                {{-- <form action="{{ route('paintjob.destroy', $paintjob->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn">Mark as Done</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -43,7 +45,7 @@
         <span style="text-align: right;">{{$paintjobs->links()}}</span>
 
         <h3>Shop Performance Breakdown:</h3>
-        <table style="width: 100%;">
+        <table style="width: 100%;" id="performanceTable">
             <thead>
                 <tr>
                     <th>Blue</th>
@@ -58,6 +60,24 @@
                     <td style='text-align: center;'>{{$countRed}}</td>
                     <td style='text-align: center;'>{{$countGreen}}</td>
                     <td style='text-align: center;'>{{$totalPainted}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Paint Queue:</h3>
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Plate no.</th>
+                    <th>Current Color</th>
+                    <th>Target Color</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style='text-align: center;'>0</td>
+                    <td style='text-align: center;'>0</td>
+                    <td style='text-align: center;'>0</td>
                 </tr>
             </tbody>
         </table>
@@ -84,6 +104,33 @@
                 if($(this).html() == 4){
                     $(this).html('Blue')
                 }
+            })
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+
+            $('.deleteRecord').click(function(){
+
+                var id = $(this).data("id")
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "paintjob/" + id,
+                    data: {
+                        id: id,
+                    },
+                    success: function (data) {
+
+                        alert(data.message)
+
+                        setTimeout(() => {
+                            location.reload()
+                        }, 5000)
+                    }
+                })
             })
         })
     </script>

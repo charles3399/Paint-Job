@@ -107,7 +107,11 @@ class PaintJobController extends Controller
 
         $paintjob->update(['is_done' => true]);
 
-        return redirect('job/list');
+        return response()->json([
+            'message' => 'Paint job is done!',
+        ]);
+
+        //return redirect('job/list');
     }
 
     public function viewPaintJob()

@@ -58,7 +58,7 @@ class PaintJobController extends Controller
 
         $paintjob->save();
 
-        return redirect('job/list');
+        return redirect('joblist');
     }
 
     /**
@@ -123,6 +123,7 @@ class PaintJobController extends Controller
         //->where('paint_jobs.current_color','colors.id')
         // ->where('paint_jobs.target_color','colors.id')
         ->where('paint_jobs.is_done', 0)
+        ->orderBy('created_at', 'DESC')
         ->simplePaginate(5);
 
         $countBlue = DB::table('paint_jobs')->where([['target_color', 4],['is_done', true]])->count();

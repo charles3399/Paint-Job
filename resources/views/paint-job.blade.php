@@ -63,24 +63,6 @@
                 </tr>
             </tbody>
         </table>
-
-        <h3>Paint Queue:</h3>
-        <table style="width: 100%;">
-            <thead>
-                <tr>
-                    <th>Plate no.</th>
-                    <th>Current Color</th>
-                    <th>Target Color</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style='text-align: center;'>0</td>
-                    <td style='text-align: center;'>0</td>
-                    <td style='text-align: center;'>0</td>
-                </tr>
-            </tbody>
-        </table>
     </section>
 
 @endsection
